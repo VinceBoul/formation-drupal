@@ -67,58 +67,119 @@
  * @see html.html.twig
  */
 #}
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t}}">
+
+{% block head %}
+<nav{{ navbar_top_attributes }}
+  {% if 'administrator' in user.getroles(TRUE)  %}
+    style="margin-top: 5rem;"
+  {% endif %}
+>
+  {% if container_navbar %}
   <div class="container">
-    <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
-    {#
-    {% block head %}
-    {% if page.secondary_menu or page.top_header or page.top_header_form %}
-      <nav{{ navbar_top_attributes }}>
-        {% if container_navbar %}
-        <div class="container">
-          {% endif %}
-          {{ page.secondary_menu }}
-          {{ page.top_header }}
-          {% if page.top_header_form %}
-            <div class="form-inline navbar-form ml-auto">
-              {{ page.top_header_form }}
-            </div>
-          {% endif %}
-          {% if container_navbar %}
-        </div>
-        {% endif %}
-      </nav>
-    {% endif %}
-    {% endblock %}
-    #}
+  {% endif %}
+
+    {{ page.header }}
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       Menu
       <i class="fas fa-bars ms-1"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-      {% if page.top_header_form %}
+      {% if page.top_header_form or page.secondary_menu %}
+
         {{ page.top_header_form }}
-{#
-        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-#}
+
+        {{ page.secondary_menu }}
+
       {% endif %}
     </div>
+    {% if container_navbar %}
   </div>
+  {% endif %}
 </nav>
+{% endblock %}
+</header>
 <!-- Masthead-->
-<header class="masthead">
+<header class="masthead bg-secondary">
   <div class="container">
     <div class="masthead-subheading">Welcome To Our Studio!</div>
     <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
     <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
   </div>
 </header>
+
+
+<div id="page-wrapper">
+  <div id="page">
+    <div id="main-wrapper" class="layout-main-wrapper clearfix">
+      {% block content %}
+        <section class="page-section bg-light" id="portfolio">
+          <div class="container">
+            {% if page.highlighted %}
+              <div class="highlighted">
+                <aside class="{{ container }} section clearfix" role="complementary">
+                  {{ page.highlighted }}
+                </aside>
+              </div>
+            {% endif %}
+            {% if page.featured_top %}
+              {% block featured %}
+                <div class="featured-top">
+                  <aside class="featured-top__inner section {{ container }} clearfix" role="complementary">
+                    {{ page.featured_top }}
+                  </aside>
+                </div>
+              {% endblock %}
+            {% endif %}
+            <div class="row">
+
+
+              <div id="main" class="{{ container }}">
+                {{ page.breadcrumb }}
+                <div class="row row-offcanvas row-offcanvas-left clearfix">
+                  <main{{ content_attributes }}>
+                    <section class="section">
+                      <a id="main-content" tabindex="-1"></a>
+                      {{ page.content }}
+                    </section>
+                  </main>
+                  {% if page.sidebar_first %}
+                    <div{{ sidebar_first_attributes }}>
+                      <aside class="section" role="complementary">
+                        {{ page.sidebar_first }}
+                      </aside>
+                    </div>
+                  {% endif %}
+                  {% if page.sidebar_second %}
+                    <div{{ sidebar_second_attributes }}>
+                      <aside class="section" role="complementary">
+                        {{ page.sidebar_second }}
+                      </aside>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      {% endblock %}
+    </div>
+    {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
+      <div class="featured-bottom">
+        <section class="page-section bg-light" id="team">
+          <div class="container">
+            {{ page.featured_bottom_first }}
+          </div>
+        </section>
+
+          {{ page.featured_bottom_second }}
+          {{ page.featured_bottom_third }}
+      </div>
+    {% endif %}
+  </div>
+</div>
 <!-- Services-->
 {#
 <section class="page-section" id="services">
@@ -447,15 +508,18 @@
 </section>
 #}
 <!-- Footer-->
-<footer class="site-footer footer py-4">
+<footer class="site-footer footer bg-dark py-5">
   {% block footer %}
     <div class="{{ container }}">
       {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
         <div class="site-footer__top clearfix">
-          {{ page.footer_first }}
-          {{ page.footer_second }}
-          {{ page.footer_third }}
-          {{ page.footer_fourth }}
+          <div class="row">
+            <div class="col-12">{{ page.footer_first }}</div>
+            <div class="col-4">{{ page.footer_second }}</div>
+            <div class="col-4">{{ page.footer_third }}</div>
+            <div class="col-4">{{ page.footer_fourth }}</div>
+          </div>
+
         </div>
       {% endif %}
       {% if page.footer_fifth %}
@@ -466,24 +530,7 @@
     </div>
   {% endblock %}
 </footer>
-<footer class="footer py-4">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2021</div>
-      <div class="col-lg-4 my-3 my-lg-0">
-        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <div class="col-lg-4 text-lg-end">
-        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- Portfolio Modals-->
-<!-- Portfolio item 1 modal popup-->
+{#  Portfolio Modals
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -518,129 +565,4 @@
     </div>
   </div>
 </div>
-
-
-
-<div id="page-wrapper">
-  <div id="page">
-    <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t}}">
-
-      {% block head %}
-        {% if page.secondary_menu or page.top_header or page.top_header_form %}
-          <nav{{ navbar_top_attributes }}>
-          {% if container_navbar %}
-          <div class="container">
-          {% endif %}
-              {{ page.secondary_menu }}
-              {{ page.top_header }}
-              {% if page.top_header_form %}
-                <div class="form-inline navbar-form ml-auto">
-                  {{ page.top_header_form }}
-                </div>
-              {% endif %}
-          {% if container_navbar %}
-          </div>
-          {% endif %}
-          </nav>
-        {% endif %}
-        <nav{{ navbar_attributes }}>
-          {% if container_navbar %}
-          <div class="container">
-          {% endif %}
-            {{ page.header }}
-            {% if page.primary_menu or page.header_form %}
-              <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-              <div class="collapse navbar-collapse justify-content-end" id="CollapsingNavbar">
-                {{ page.primary_menu }}
-                {% if page.header_form %}
-                  <div class="form-inline navbar-form justify-content-end">
-                    {{ page.header_form }}
-                  </div>
-                {% endif %}
-	          </div>
-            {% endif %}
-            {% if sidebar_collapse %}
-              <button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#CollapsingLeft" aria-controls="CollapsingLeft" aria-expanded="false" aria-label="Toggle navigation"></button>
-            {% endif %}
-          {% if container_navbar %}
-          </div>
-          {% endif %}
-        </nav>
-      {% endblock %}
-    </header>
-    {% if page.highlighted %}
-      <div class="highlighted">
-        <aside class="{{ container }} section clearfix" role="complementary">
-          {{ page.highlighted }}
-        </aside>
-      </div>
-    {% endif %}
-    {% if page.featured_top %}
-      {% block featured %}
-        <div class="featured-top">
-          <aside class="featured-top__inner section {{ container }} clearfix" role="complementary">
-            {{ page.featured_top }}
-          </aside>
-        </div>
-      {% endblock %}
-    {% endif %}
-    <div id="main-wrapper" class="layout-main-wrapper clearfix">
-      {% block content %}
-        <div id="main" class="{{ container }}">
-          {{ page.breadcrumb }}
-          <div class="row row-offcanvas row-offcanvas-left clearfix">
-              <main{{ content_attributes }}>
-                <section class="section">
-                  <a id="main-content" tabindex="-1"></a>
-                  {{ page.content }}
-                </section>
-              </main>
-            {% if page.sidebar_first %}
-              <div{{ sidebar_first_attributes }}>
-                <aside class="section" role="complementary">
-                  {{ page.sidebar_first }}
-                </aside>
-              </div>
-            {% endif %}
-            {% if page.sidebar_second %}
-              <div{{ sidebar_second_attributes }}>
-                <aside class="section" role="complementary">
-                  {{ page.sidebar_second }}
-                </aside>
-              </div>
-            {% endif %}
-          </div>
-        </div>
-      {% endblock %}
-    </div>
-    {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
-      <div class="featured-bottom">
-        <aside class="{{ container }} clearfix" role="complementary">
-          {{ page.featured_bottom_first }}
-          {{ page.featured_bottom_second }}
-          {{ page.featured_bottom_third }}
-        </aside>
-      </div>
-    {% endif %}
-   {#  <footer class="site-footer">
-      {% block footer %}
-        <div class="{{ container }}">
-          {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-            <div class="site-footer__top clearfix">
-              {{ page.footer_first }}
-              {{ page.footer_second }}
-              {{ page.footer_third }}
-              {{ page.footer_fourth }}
-            </div>
-          {% endif %}
-          {% if page.footer_fifth %}
-            <div class="site-footer__bottom">
-              {{ page.footer_fifth }}
-            </div>
-          {% endif %}
-        </div>
-      {% endblock %}
-    </footer>
-    #}
-  </div>
-</div>
+#}
