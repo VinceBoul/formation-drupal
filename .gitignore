@@ -24,4 +24,6 @@
 # Ignore .env files as they are personal
 /.env
 
-composer.lock
+/composer.lock
+
+/web/themes/custom/my_bootstrap_theme/node_modules
