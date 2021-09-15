@@ -16,12 +16,10 @@ montserrat:
   version: VERSION
   css:
     component:
-      #fonts/open_sans.css: {}
       //fonts.googleapis.com/css?family=Montserrat:400,700: {}
 
 roboto-slab:
   version: VERSION
   css:
     component:
-      #fonts/open_sans.css: {}
       //fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700: {}
