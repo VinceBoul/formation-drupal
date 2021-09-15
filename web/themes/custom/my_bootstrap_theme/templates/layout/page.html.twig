@@ -69,117 +69,102 @@
 #}
 <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t}}">
 
-{% block head %}
-<nav{{ navbar_top_attributes }}
-  {% if 'administrator' in user.getroles(TRUE)  %}
-    style="margin-top: 5rem;"
-  {% endif %}
->
-  {% if container_navbar %}
-  <div class="container">
-  {% endif %}
-
-    {{ page.header }}
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
-      <i class="fas fa-bars ms-1"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      {% if page.top_header_form or page.secondary_menu %}
-
-        {{ page.top_header_form }}
-
-        {{ page.secondary_menu }}
-
+  {% block head %}
+    <nav{{ navbar_top_attributes }}
+      {% if 'administrator' in user.getroles(TRUE)  %}
+        style="margin-top: 5rem;"
       {% endif %}
-    </div>
-    {% if container_navbar %}
-  </div>
-  {% endif %}
-</nav>
-{% endblock %}
-</header>
-<!-- Masthead-->
-<header class="masthead bg-secondary">
-  <div class="container">
-    <div class="masthead-subheading">Welcome To Our Studio!</div>
-    <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-    <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
-  </div>
-</header>
+    >
+      {% if container_navbar %}
+      <div class="container">
+        {% endif %}
 
+        {{ page.header }}
 
-<div id="page-wrapper">
-  <div id="page">
-    <div id="main-wrapper" class="layout-main-wrapper clearfix">
-      {% block content %}
-        <section class="page-section bg-light" id="portfolio">
-          <div class="container">
-            {% if page.highlighted %}
-              <div class="highlighted">
-                <aside class="{{ container }} section clearfix" role="complementary">
-                  {{ page.highlighted }}
-                </aside>
-              </div>
-            {% endif %}
-            {% if page.featured_top %}
-              {% block featured %}
-                <div class="featured-top">
-                  <aside class="featured-top__inner section {{ container }} clearfix" role="complementary">
-                    {{ page.featured_top }}
-                  </aside>
-                </div>
-              {% endblock %}
-            {% endif %}
-            <div class="row">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          {% if page.top_header_form or page.secondary_menu %}
 
+            {{ page.top_header_form }}
 
-              <div id="main" class="{{ container }}">
-                {{ page.breadcrumb }}
-                <div class="row row-offcanvas row-offcanvas-left clearfix">
-                  <main{{ content_attributes }}>
-                    <section class="section">
-                      <a id="main-content" tabindex="-1"></a>
-                      {{ page.content }}
-                    </section>
-                  </main>
-                  {% if page.sidebar_first %}
-                    <div{{ sidebar_first_attributes }}>
-                      <aside class="section" role="complementary">
-                        {{ page.sidebar_first }}
-                      </aside>
-                    </div>
-                  {% endif %}
-                  {% if page.sidebar_second %}
-                    <div{{ sidebar_second_attributes }}>
-                      <aside class="section" role="complementary">
-                        {{ page.sidebar_second }}
-                      </aside>
-                    </div>
-                  {% endif %}
-                </div>
-              </div>
+            {{ page.secondary_menu }}
 
-            </div>
-          </div>
-        </section>
-      {% endblock %}
-    </div>
-    {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
-      <div class="featured-bottom">
-        <section class="page-section bg-light" id="team">
-          <div class="container">
-            {{ page.featured_bottom_first }}
-          </div>
-        </section>
-
-          {{ page.featured_bottom_second }}
-          {{ page.featured_bottom_third }}
+          {% endif %}
+        </div>
+        {% if container_navbar %}
       </div>
-    {% endif %}
-  </div>
+      {% endif %}
+    </nav>
+  {% endblock %}
+</header>
+
+<div id="main-wrapper" class="layout-main-wrapper clearfix" {% if 'administrator' in user.getroles(TRUE) %}style="padding-top: 7rem;"{% endif %}>
+  {% block content %}
+    <section class="page-section bg-light" id="portfolio">
+      {% if page.highlighted %}
+
+        <div class="container highlighted">
+          <aside class="{{ container }} section clearfix" role="complementary">
+            {{ page.highlighted }}
+          </aside>
+        </div>
+      {% endif %}
+      {% if page.featured_top %}
+        {% block featured %}
+          <div class="container featured-top">
+            <aside class="featured-top__inner section {{ container }} clearfix" role="complementary">
+              {{ page.featured_top }}
+            </aside>
+          </div>
+        {% endblock %}
+      {% endif %}
+
+      <div id="main" class="{{ container }} p-0">
+        {{ page.breadcrumb }}
+        <div class="row row-offcanvas row-offcanvas-left clearfix">
+          <main{{ content_attributes }}>
+            <section class="section">
+              <a id="main-content" tabindex="-1"></a>
+
+              {{ page.content }}
+            </section>
+          </main>
+          {% if page.sidebar_first %}
+            <div{{ sidebar_first_attributes }}>
+              <aside class="section" role="complementary">
+                {{ page.sidebar_first }}
+              </aside>
+            </div>
+          {% endif %}
+          {% if page.sidebar_second %}
+            <div{{ sidebar_second_attributes }}>
+              <aside class="section" role="complementary">
+                {{ page.sidebar_second }}
+              </aside>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </section>
+  {% endblock %}
 </div>
+{% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
+  <div class="featured-bottom">
+    <section class="page-section bg-light" id="team">
+      <div class="container">
+        {{ page.featured_bottom_first }}
+      </div>
+    </section>
+
+    {{ page.featured_bottom_second }}
+    {{ page.featured_bottom_third }}
+  </div>
+{% endif %}
+
 <!-- Services-->
 {#
 <section class="page-section" id="services">
