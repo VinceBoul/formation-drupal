@@ -1,6 +1,6 @@
 global-styling:
   version: VERSION
-  js: 
+  js:
     js/popper.min.js: {}
     js/bootstrap.min.js: {}
     js/barrio.js: {}
@@ -11,3 +11,15 @@ global-styling:
   dependencies:
     - core/jquery
     - core/drupal
+
+montserrat:
+  version: VERSION
+  css:
+    component:
+      //fonts.googleapis.com/css?family=Montserrat:400,700: {}
+
+roboto-slab:
+  version: VERSION
+  css:
+    component:
+      //fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700: {}

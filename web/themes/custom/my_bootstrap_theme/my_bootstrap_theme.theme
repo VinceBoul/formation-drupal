@@ -29,4 +29,16 @@ function my_bootstrap_theme_form_system_theme_settings_alter(&$form, FormStateIn
     'bg-white' => t('White'),
     'bg-transparent' => t('Transparent'),
   );
+
+
+  $form['fonts']['fonts']['bootstrap_barrio_google_fonts']['#options']['montserrat'] = 'Montserrat';
+  $form['fonts']['fonts']['bootstrap_barrio_google_fonts']['#options']['roboto-slab'] = 'Roboto Slab';
+}
+
+function my_bootstrap_theme_preprocess_page(&$variables)
+{
+  $fonts = theme_get_setting('bootstrap_barrio_google_fonts');
+  if ($fonts) {
+    $variables['#attached']['library'][] = (in_array($fonts, ['montserrat', 'roboto']) ? 'my_bootstrap_theme' : 'bootstrap_barrio') . '/' . $fonts;
+  }
 }
