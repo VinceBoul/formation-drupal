@@ -42,3 +42,9 @@ function my_bootstrap_theme_preprocess_page(&$variables)
     $variables['#attached']['library'][] = (in_array($fonts, ['montserrat', 'roboto']) ? 'my_bootstrap_theme' : 'bootstrap_barrio') . '/' . $fonts;
   }
 }
+
+function my_bootstrap_theme_preprocess_image_style(&$variables) {
+  if ($variables['style_name'] == 'circe') {
+    $variables['image']['#attributes']['class'][] = 'rounded-circle';
+  }
+}
