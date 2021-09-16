@@ -1,0 +1,24 @@
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:user_list_block:89df2155-8dc8-4e2c-b305-49cad5423035'
+  module:
+    - block_content
+  theme:
+    - my_bootstrap_theme
+id: ouramazingteam
+theme: my_bootstrap_theme
+region: featured_bottom_first
+weight: 0
+provider: null
+plugin: 'block_content:89df2155-8dc8-4e2c-b305-49cad5423035'
+settings:
+  id: 'block_content:89df2155-8dc8-4e2c-b305-49cad5423035'
+  label: 'OUR AMAZING TEAM'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
