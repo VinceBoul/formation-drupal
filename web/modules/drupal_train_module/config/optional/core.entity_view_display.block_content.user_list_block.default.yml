@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.user_list_block
+    - field.field.block_content.user_list_block.body
+    - field.field.block_content.user_list_block.field_user
+  module:
+    - text
+id: block_content.user_list_block.default
+targetEntityType: block_content
+bundle: user_list_block
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_user:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden: {  }
