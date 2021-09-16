@@ -14,12 +14,11 @@ class DrupalTrainModuleController extends ControllerBase {
    */
   public function build() {
 
-    $build['content'] = [
-      '#type' => 'item',
-      '#markup' => $this->t('It works!'),
+    return [
+      '#theme' => 'my_template',
+      '#test_var' => $this->t('Test Value'),
     ];
 
-    return $build;
   }
 
 }
