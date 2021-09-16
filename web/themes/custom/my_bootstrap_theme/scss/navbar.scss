@@ -1,0 +1,40 @@
+
+#navbar-top {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #212529;
+  z-index: 10;
+  .navbar-toggler {
+    padding: 0.75rem;
+    font-size: 0.75rem;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .navbar-brand {
+    color: #ffc800;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 700;
+    letter-spacing: 0.0625em;
+    text-transform: uppercase;
+    img {
+      height: 1.5rem;
+    }
+  }
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 0.95rem;
+        color: #fff;
+        letter-spacing: 0.0625em;
+        &:hover {
+          color: #ffc800;
+        }
+      }
+      .nav-link.active {
+        color: #ffc800;
+      }
+    }
+  }
+}
