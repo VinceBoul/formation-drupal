@@ -1,0 +1,4 @@
+administer drupal_train_module configuration:
+  title: 'Administer drupal_train_module configuration'
+  description: 'Optional description.'
+  restrict access: true
