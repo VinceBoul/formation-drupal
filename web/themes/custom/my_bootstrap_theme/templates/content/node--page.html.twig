@@ -80,8 +80,7 @@
     </div>
   </header>
 
-  {{ title_prefix }}
-  {% if label and not page %}
+  {% if label and not page and not is_front %}
     <h2{{ title_attributes.addClass('node__title') }}>
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     </h2>

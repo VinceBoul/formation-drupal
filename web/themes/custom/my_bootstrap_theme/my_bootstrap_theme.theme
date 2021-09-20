@@ -48,3 +48,8 @@ function my_bootstrap_theme_preprocess_image_style(&$variables) {
     $variables['image']['#attributes']['class'][] = 'rounded-circle';
   }
 }
+
+
+function my_bootstrap_theme_preprocess_node(&$variables) {
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+}
