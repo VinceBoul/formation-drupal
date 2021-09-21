@@ -127,15 +127,13 @@
           <main{{ content_attributes }}>
             <section class="section">
               <a id="main-content" tabindex="-1"></a>
-              {% if node == NULL %}
+              {% if node == NULL and is_front is same as(false) %}
               <div class="container">
                 {% endif %}
 
-                {{ page.breadcrumb }}
-
                 {{ page.content }}
 
-                {% if node == NULL %}
+                {% if node == NULL and is_front is same as(false) %}
               </div>
               {% endif %}
             </section>
