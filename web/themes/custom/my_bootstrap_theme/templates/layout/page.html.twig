@@ -127,7 +127,7 @@
           <main{{ content_attributes }}>
             <section class="section">
               <a id="main-content" tabindex="-1"></a>
-              {% if node == NULL and is_front is same as(false) %}
+              {% if node == NULL and is_front is same as(false) and not route_name starts with 'drupal_train' %}
               <div class="container">
                 {% endif %}
 

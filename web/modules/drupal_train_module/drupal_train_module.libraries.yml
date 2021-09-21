@@ -4,7 +4,7 @@ drupal_train_module:
     js/drupal-train-module.js: {}
   css:
     component:
-      css/drupal-train-module.css: {}
+      css/style.min.css: {}
   dependencies:
     - core/drupalSettings
     - drupal_train_module/jquery-labelauty

@@ -1,0 +1,10 @@
+<ul id="progressbar">
+  {% for step in data.form_steps %}
+    <li class="active" id="account">
+      <strong>{{ step.label }}</strong>
+    </li>
+  {% endfor %}
+  <li id="personal"><strong>Personal</strong></li>
+  <li id="payment"><strong>Payment</strong></li>
+  <li id="confirm"><strong>Finish</strong></li>
+</ul> <!-- fieldsets -->

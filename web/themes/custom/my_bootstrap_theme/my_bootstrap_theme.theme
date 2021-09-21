@@ -41,6 +41,8 @@ function my_bootstrap_theme_preprocess_page(&$variables)
   if ($fonts) {
     $variables['#attached']['library'][] = (in_array($fonts, ['montserrat', 'roboto']) ? 'my_bootstrap_theme' : 'bootstrap_barrio') . '/' . $fonts;
   }
+  $variables['route_name'] = \Drupal::routeMatch()->getRouteName();
+
 }
 
 function my_bootstrap_theme_preprocess_image_style(&$variables) {
