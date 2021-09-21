@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.bol_etape.body
+    - field.field.node.bol_etape.field_questions
+    - field.field.node.bol_etape.field_subtitle
+    - node.type.bol_etape
+  module:
+    - text
+    - user
+id: node.bol_etape.teaser
+targetEntityType: node
+bundle: bol_etape
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_questions: true
+  field_subtitle: true
