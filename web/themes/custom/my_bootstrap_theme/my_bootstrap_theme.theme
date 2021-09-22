@@ -44,7 +44,7 @@ function my_bootstrap_theme_preprocess_page(&$variables)
 }
 
 function my_bootstrap_theme_preprocess_image_style(&$variables) {
-  if ($variables['style_name'] == 'circe') {
+  if ($variables['style_name'] == 'circle') {
     $variables['image']['#attributes']['class'][] = 'rounded-circle';
   }
 }
