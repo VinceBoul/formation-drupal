@@ -12,7 +12,7 @@
 
 
 ### V1.0.1 - Installation Admin Toolbar
-* Importer le module : `composer require "drupal/admin_toolbar:^3.0"`
+* Mettre à jour les dépendances : `composer u`
 * Activer le module : `drush en admin_toolbar admin_toolbar_tools
    admin_toolbar_links_access_filter`
 * Vider le cache : `drush cr`
