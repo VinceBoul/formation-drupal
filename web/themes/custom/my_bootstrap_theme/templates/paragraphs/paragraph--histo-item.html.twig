@@ -44,13 +44,13 @@
 
 
 {# Prints div with classes, and content without Width and Background. #}
-  <div class="timeline-image">
-    {{ content.bp_image_field }}
+<div class="timeline-image">
+  {{ content.bp_image_field }}
+</div>
+<div class="timeline-panel">
+  <div class="timeline-heading">
+    <h4>{{ content.field_periode }}</h4>
+    <h4 class="subheading">{{  content.field_title }}</h4>
   </div>
-  <div class="timeline-panel">
-    <div class="timeline-heading">
-      <h4>    {{ content.field_periode }}</h4>
-      <h4 class="subheading">{{  content.field_title }}</h4>
-    </div>
-    <div class="timeline-body"><p class="text-muted">{{ content.bp_text }}</p></div>
-  </div>
+  <div class="timeline-body"><p class="text-muted">{{ content.bp_text }}</p></div>
+</div>
