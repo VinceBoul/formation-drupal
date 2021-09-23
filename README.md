@@ -9,3 +9,10 @@
     * Suivre les instructions
     * **Mettre de côté le mot de passe admin généré**
   * Lancer le site : `drush rs`
+
+
+### V1.0.1 - Installation Admin Toolbar
+* Importer le module : `composer require "drupal/admin_toolbar:^3.0"`
+* Activer le module : `drush en admin_toolbar admin_toolbar_tools
+   admin_toolbar_links_access_filter`
+* Vider le cache : `drush cr`
